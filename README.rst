@@ -1,25 +1,30 @@
 ===============
-privacy Formula
+Privacy Formula
 ===============
 
-Installs some privacy related configurations.
+Installs some privacy related configurations for all users and root user.
 
-Replaces the .vimrc and .bash* configuration files for the root and /home/user.
+    - Updates `~/.bashrc` with `HISTFILESIZE=0` to prevent .bash_history file
+      from being written to.
 
-Files updates for /root and /home/user:
+    - Updates `~/.vimrc` to prevent vim history from being written to
+      `~/.viminfo`.
+    
+    - Clears `~/.bash_history` and and removes `~/.viminfo`
 
-   .bash_aliases
-   .bash_git
-   .bash_history
-   .bash_logout
-   .bash_profile
+    - Updates `/etc/updatedb.conf` to prevent `locate` / `updatedb` from
+      indexing `/home/**`, `/rw/**` and bind mounts
+
+Files updated for /root and /home/user:
+
    .bashrc
-   .vim
    .vimrc
+   .bash_history (cleared)
+   .viminfo (removed)
 
-.bash_history is cleared and prevented from being used
-.vimrc is configurated not to store vim history 
+Other files updates:
 
+    /etc/updatedb.conf
 
 Available states
 ================
@@ -29,4 +34,3 @@ Available states
 
 ``privacy``
 ------------
-

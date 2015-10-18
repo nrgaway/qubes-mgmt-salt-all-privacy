@@ -4,7 +4,7 @@ package-name:       qubes-mgmt-salt-all-privacy
 name:               privacy-formula
 top_level_dir:      privacy
 formula-files:      README.rst LICENSE privacy
-pillar-files:       pillar
+pillar-files:       
 test-formula-files: 
 test-pillar-files: 
 formula_root:       /srv/formulas
@@ -13,18 +13,21 @@ version:            3.0.0
 release:            1
 os:                 RedHat, Debian, Ubuntu, Suse, FreeBSD
 os_family:          RedHat, Debian, Suse, FreeBSD
-summary:            Installs some privacy related configurations.
+summary:            Installs some privacy related configurations for all users and root user
 description: |
-  Installs some privacy related configurations.
-
-  Replaces the .vimrc and .bash* configuration files for the root and /home/user.
+  Installs some privacy related configurations for all users and root user.
+  
+  Updates `~/.bashrc` with `HISTFILESIZE=0` to prevent .bash_history file from
+  being written to.
+  
+  Updates `~/.vimrc` to prevent vim history from being written to `~/.viminfo`.
+  
+  Clears `~/.bash_history` and and removes `~/.viminfo`
+  
+  Updates `/etc/updatedb.conf` to prevent `locate` / `updatedb` from indexing
+  `/home/**`, `/rw/**` and bind mounts
 
 state-tops:
-  all:
-    enable:
-      - privacy
-  
-pillar-tops:
   all:
     enable:
       - privacy

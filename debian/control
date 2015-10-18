@@ -13,5 +13,15 @@ Section: admin
 Architecture: all
 Depends:
     qubes-mgmt-salt
-Description: Installs some privacy related configurations.
- Replaces the .vimrc and .bash* configuration files for the root and /home/user.
+Description:
+ Installs some privacy related configurations for all users and root user.
+ .
+ Updates `~/.bashrc` with `HISTFILESIZE=0` to prevent .bash_history file from
+ being written to.
+ .
+ Updates `~/.vimrc` to prevent vim history from being written to `~/.viminfo`.
+ .
+ Clears `~/.bash_history` and and removes `~/.viminfo`
+ .
+ Updates `/etc/updatedb.conf` to prevent `locate` / `updatedb` from indexing
+ `/home/**`, `/rw/**` and bind mounts

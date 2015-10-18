@@ -47,43 +47,15 @@ qubesctl saltutil.sync_all refresh=true -l quiet --out quiet > /dev/null || true
 # Enable States
 qubesctl top.enable %{state_name} saltenv=%{saltenv} -l quiet --out quiet > /dev/null || true
 
-# Enable Pillar States
-qubesctl top.enable %{state_name} saltenv=%{saltenv} pillar=true -l quiet --out quiet > /dev/null || true
-
-# Enable Test States
-#qubesctl top.enable %{state_name} saltenv=test -l quiet --out quiet > /dev/null || true
-# Enable Test Pillar States
-#qubesctl top.enable %{state_name} saltenv=test pillar=true -l quiet --out quiet > /dev/null || true
-
 %files
 %defattr(-,root,root)
 %attr(750, root, root) %dir /srv/formulas/all/privacy-formula/privacy
 
 /srv/formulas/all/privacy-formula/LICENSE
-/srv/formulas/all/privacy-formula/privacy/files/root/.bash_aliases
-/srv/formulas/all/privacy-formula/privacy/files/root/.bash_git
-/srv/formulas/all/privacy-formula/privacy/files/root/.bash_history
-/srv/formulas/all/privacy-formula/privacy/files/root/.bash_logout
-/srv/formulas/all/privacy-formula/privacy/files/root/.bash_profile
-/srv/formulas/all/privacy-formula/privacy/files/root/.bashrc
-/srv/formulas/all/privacy-formula/privacy/files/root/.vimrc
-/srv/formulas/all/privacy-formula/privacy/files/user/.bash_aliases
-/srv/formulas/all/privacy-formula/privacy/files/user/.bash_git
-/srv/formulas/all/privacy-formula/privacy/files/user/.bash_history
-/srv/formulas/all/privacy-formula/privacy/files/user/.bash_logout
-/srv/formulas/all/privacy-formula/privacy/files/user/.bash_profile
-/srv/formulas/all/privacy-formula/privacy/files/user/.bashrc
-/srv/formulas/all/privacy-formula/privacy/files/user/.vim/autoload/pathogen.vim
-/srv/formulas/all/privacy-formula/privacy/files/user/.vim/bundle/vim-sensible
-/srv/formulas/all/privacy-formula/privacy/files/user/.vim/bundle/vim-surround
-/srv/formulas/all/privacy-formula/privacy/files/user/.vim/PLUGINS.sh
-/srv/formulas/all/privacy-formula/privacy/files/user/.vimrc
+/srv/formulas/all/privacy-formula/privacy/files/bash_history
+/srv/formulas/all/privacy-formula/privacy/files/vimrc
 /srv/formulas/all/privacy-formula/privacy/init.sls
 /srv/formulas/all/privacy-formula/privacy/init.top
 /srv/formulas/all/privacy-formula/README.rst
-
-%attr(750, root, root) %dir /srv/pillar/all/privacy
-%config(noreplace) /srv/pillar/all/privacy/init.sls
-/srv/pillar/all/privacy/init.top
 
 %changelog
