@@ -1,16 +1,13 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
 package-name:       qubes-mgmt-salt-all-privacy
-name:               privacy-formula
-top_level_dir:      privacy
-formula-files:      README.rst LICENSE privacy
-pillar-files:       
-test-formula-files: 
-test-pillar-files: 
-formula_root:       /srv/formulas
 saltenv:            all
 version:            3.0.0
 release:            1
+name:               privacy-formula
+top_level_dir:      privacy
+formula-files:      README.rst LICENSE privacy
+formula_dir:        $(MGMT_DEFAULT_FORMULA_DIR)/$(MGMT_SALTENV)/$(MGMT_NAME)
 os:                 RedHat, Debian, Ubuntu, Suse, FreeBSD
 os_family:          RedHat, Debian, Suse, FreeBSD
 summary:            Installs some privacy related configurations for all users and root user
