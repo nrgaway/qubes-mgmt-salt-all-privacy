@@ -74,12 +74,20 @@ vimrc-absent-{{ user.name }}:
 {% endcall %}
 
 # === updatedb =================================================================
+updatedb_augeas:
+  pkg.installed:
+    - names: 
+      - augeas
+      - python-augeas
+
 updatedb-bind_mounts:
   augeas.change:
     - lens: UpdateDB.lns
     - context: /files/etc/updatedb.conf
     - changes:
       - set PRUNE_BIND_MOUNTS yes
+    - require:
+      - pkg: updatedb_augeas
 
 updatedb_home:
   augeas.change:
@@ -88,6 +96,8 @@ updatedb_home:
     - changes:
       - set PRUNEPATHS/entry[last()+1] /home
     - unless: grep "PRUNEPATHS" /etc/updatedb.conf | grep '/home'
+    - require:
+      - pkg: updatedb_augeas
 
 updatedb_rw:
   augeas.change:
@@ -96,3 +106,5 @@ updatedb_rw:
     - changes:
       - set PRUNEPATHS/entry[last()+1] /rw
     - unless: grep "PRUNEPATHS" /etc/updatedb.conf | grep '/rw'
+    - require:
+      - pkg: updatedb_augeas
