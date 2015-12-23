@@ -38,21 +38,21 @@ bashrc-{{ user.name }}:
     - name: {{ user.home }}/.bashrc
     - pattern: ^\s*HISTFILESIZE\s*=(.*)$
     - repl: HISTFILESIZE=0
-    - append_if_not_found: true
+    - append_if_not_found: True
 
 {{ user.home }}/.bash_history:
   file.managed:
     - source: salt://privacy/files/bash_history
     - user: {{ user.uid }}
     - group: {{ user.gid }}
-    - replace: true
+    - replace: True
     - file_mode: {{ user.filemode }}
 
 vimrc-present-{{ user.name }}:
   file.managed:
     - name: {{ user.home }}/.vimrc
     - content: set viminfo=
-    - replace: false
+    - replace: False
     - user: {{ user.uid }}
     - group: {{ user.gid }}
     - file_mode: {{ user.filemode }}
@@ -62,7 +62,7 @@ vimrc-{{ user.name }}:
     - name: {{ user.home }}/.vimrc
     - pattern: ^\s*set\s*viminfo\s*=(.*)$
     - repl: set viminfo=
-    - append_if_not_found: true
+    - append_if_not_found: True
     - require:
       - file: vimrc-present-{{ user.name }}
 
@@ -77,9 +77,19 @@ vimrc-absent-{{ user.name }}:
 updatedb_augeas:
   pkg.installed:
     - names: 
-      - augeas
       - python-augeas
-
+  
+  file.managed:
+    - name:  /usr/share/augeas/lenses/updatedb.aug
+    - source: salt://privacy/files/updatedb.aug
+    - replace: False
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+    - require:
+      - pkg: updatedb_augeas
+  
 updatedb-bind_mounts:
   augeas.change:
     - lens: UpdateDB.lns

@@ -12,7 +12,8 @@ Package: qubes-mgmt-salt-all-privacy
 Section: admin
 Architecture: all
 Depends:
-    qubes-mgmt-salt
+    qubes-mgmt-salt,
+    python-augeas
 Description:
  Installs some privacy related configurations for all users and root user.
  .

@@ -10,6 +10,7 @@ URL:	   http://www.qubes-os.org/
 Group:     System administration tools
 BuildArch: noarch
 Requires:  qubes-mgmt-salt
+Requires:  python-augeas
 
 %define _builddir %(pwd)
 
@@ -55,6 +56,7 @@ qubesctl top.enable privacy saltenv=all -l quiet --out quiet > /dev/null || true
 /srv/formulas/all/privacy-formula/LICENSE
 /srv/formulas/all/privacy-formula/privacy/files/bash_history
 /srv/formulas/all/privacy-formula/privacy/files/vimrc
+/srv/formulas/all/privacy-formula/privacy/files/updatedb.aug
 /srv/formulas/all/privacy-formula/privacy/init.sls
 /srv/formulas/all/privacy-formula/privacy/init.top
 /srv/formulas/all/privacy-formula/README.rst
